@@ -1,8 +1,11 @@
-import ScaledContainer from '../ScaledContainer/ScaledContainer.js';
-import BunnyGroup from '../BunnyGroup/BunnyGroup.js';
-import Bunny from '../Bunny/Bunny.js';
 import Background from '../Background/Background.js';
+import Overlay from "../Overlay/overlay.js";
 import RendererStore from '../../stores/RendererStore.js';
+import ScaledContainer from '../ScaledContainer/ScaledContainer.js';
+import TEXTURE from "../../filters/WeveFilter/displacement_map.jpg";
+// import Bunny from '../Bunny/Bunny.js';
+// import BUNNY from '../Bunny/bunny.png';
+// import BunnyGroup from '../BunnyGroup/BunnyGroup.js';
 /**
  * Main App Display Object
  *
@@ -14,13 +17,17 @@ import RendererStore from '../../stores/RendererStore.js';
 export default class App extends ScaledContainer {
 
   constructor(...args) {
-    var bg = new Background();
 
     super(...args);
+    this.pivot.x = 0;
+    this.pivot.y = 0;
+
+    var bg = new Background();
+    var overlay = new Overlay()
+
 
     this.addChild(bg);
-
-    this.addBunnies();
+    this.addChild(overlay);
 
   }
 
@@ -35,7 +42,7 @@ export default class App extends ScaledContainer {
     b1.position.y = cy;
 
     group1.position.x = cx;
-    group1.position.y = cy + (RendererStore.get('stageHeight')*.25);
+    group1.position.y = cy + (RendererStore.get('stageHeight') * .25);
 
     this.addChild(b1);
     this.addChild(group1);

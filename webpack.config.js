@@ -1,8 +1,10 @@
 var path = require('path');
+var webpack = require('webpack');
 var pkg = require('./package.json')
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var DEBUG = process.env.NODE_ENV !== 'production';
 var util = require('util');
+var brfs = require('brfs')
 var entry = {
   app: ['./app.js']
 };
@@ -18,15 +20,15 @@ module.exports = {
     publicPath: DEBUG ? "/" : "./",
     filename: "bundle.js"
   },
-  node: {
-    fs: 'empty'
+  node: { // this is for pixi.js
+    fs: "empty"
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel-loader"
+        exclude: path.join(__dirname, 'node_modules'),
+        loader: 'babel'
       },
       {
         test: /\.html$/,
@@ -48,9 +50,15 @@ module.exports = {
         include: path.join(__dirname, 'node_modules', 'pixi.js'),
         loader: 'json',
       }
+    ],
+    postLoaders: [
+      {
+        loader: "transform?brfs"
+      }
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({
       url: 'http://localhost:9090'
     })

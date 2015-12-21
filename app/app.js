@@ -7,18 +7,20 @@
  */
 
 import './index.html';
-import {config} from '../package.json';
-import Renderer from './Renderer/Renderer';
-import App from './displayobjects/App/App';
-import AnimationStore from './stores/AnimationStore';
+
 import TWEEN from 'tween.js';
 
+import AnimationStore from './stores/AnimationStore';
+import Renderer from './Renderer/Renderer';
+import Stage from "./displayobjects/Stage/Stage.js";
+import { config } from '../package.json';
+
 const renderer = new Renderer(config.stageWidth, config.stageHeight);
-const app = new App(config.stageWidth, config.stageHeight);
+const stage = new Stage(config.stageWidth, config.stageHeight);
 
 document.body.appendChild(renderer.view);
 
 AnimationStore.addChangeListener(() => TWEEN.update());
 
-renderer.addRenderable(app);
+renderer.addRenderable(stage);
 renderer.start();

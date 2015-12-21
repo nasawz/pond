@@ -1,5 +1,6 @@
 import PIXI from 'pixi.js';
-import TEXTURE from './diagnostic.png';
+
+import TEXTURE from './displacement_BG.jpg';
 
 /**
  * Loads the adds the diagnostic image

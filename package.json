@@ -5,8 +5,8 @@
   "description": "Pixi.js project seed / boiler-plate with ES6 and Webpack",
   "config": {
     "buildDir": "./build",
-    "stageWidth": 1920,
-    "stageHeight": 1080
+    "stageWidth": 630,
+    "stageHeight": 410
   },
   "scripts": {
     "prestart": "npm install",
@@ -19,7 +19,7 @@
     "reactman": "reactman --config ./templates/reactman.config.js"
   },
   "dependencies": {
-    "pixi.js": "3.0.7",
+    "pixi.js": "^3.0.8",
     "tween.js": "^15.0.0"
   },
   "devDependencies": {
@@ -35,6 +35,7 @@
     "open-browser-webpack-plugin": "0.0.1",
     "reactman": "^3.2.0",
     "rimraf": "^2.4.3",
+    "transform-loader": "^0.2.3",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.11.0"
   },
