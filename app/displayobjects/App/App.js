@@ -1,4 +1,5 @@
 import Background from '../Background/Background.js';
+import Fish from "../Fish/Fish.js";
 import Overlay from "../Overlay/overlay.js";
 import RendererStore from '../../stores/RendererStore.js';
 import ScaledContainer from '../ScaledContainer/ScaledContainer.js';
@@ -17,18 +18,17 @@ import TEXTURE from "../../filters/WeveFilter/displacement_map.jpg";
 export default class App extends ScaledContainer {
 
   constructor(...args) {
-
     super(...args);
     this.pivot.x = 0;
     this.pivot.y = 0;
-
     var bg = new Background();
     var overlay = new Overlay()
-
-
     this.addChild(bg);
+    for (var i = 0; i < 10; i++) {
+      let fish = new Fish(i);
+      this.addChild(fish);
+    }
     this.addChild(overlay);
-
   }
 
   addBunnies() {
